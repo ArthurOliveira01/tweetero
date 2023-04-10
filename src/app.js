@@ -20,7 +20,7 @@ application.post('/sign-up', (req, res) =>{
 application.get('/tweets', (req, res) =>{
     if(tweets.length <= 10){
         if(tweets.length === 0){
-            res.status(200).send([]);
+            res.send([]);
         } else {
             const sent = tweets.map((one) => {
                 const single = user.find((each) => each.username === one.username);
