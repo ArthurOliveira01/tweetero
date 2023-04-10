@@ -18,11 +18,17 @@ application.post('/sign-up', (req, res) =>{
 })
 
 application.get('/tweets', (req, res) =>{
-    if(tweets.length === 0){
-        res.send([]);
-    } else {
-        res.send({tweets});
+    if(tweets.length <= 10){
+        if(tweets.length === 0){
+            res.send([]);
+        } else {
+            res.send({tweets});
+        }
+    } else{
+        const last10 = tweets.slice(-10);
+        res.send(last10);
     }
+
 })
 
 application.post('/tweets', (req, res) =>{
