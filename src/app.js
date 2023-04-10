@@ -22,12 +22,12 @@ application.get('/tweets', (req, res) =>{
         if(tweets.length === 0){
             res.status(200).send([]);
         } else {
-            const sent = tweets.map((tweet) => {
-                const person = user.find((single) => single.username === tweet.username);
-                const avatar = person ? person.avatar : null;
-                return { ...tweet, avatar, username: tweet.username, tweet: tweet.tweet };
-              });
-            res.status(200).send({sent});
+            const sent = tweets.map((one) => {
+                const single = user.find((each) => each.username === one.username);
+                const avatar = single ? single.avatar : null;
+                return { ...one, avatar, username: one.username, tweet: one.tweet };
+            })
+            res.send(sent);
         }
     } else{
         const last10 = tweets.slice(-10);
