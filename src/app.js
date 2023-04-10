@@ -26,7 +26,7 @@ application.get('/tweets', (req, res) =>{
 })
 
 application.post('/tweets', (req, res) =>{
-    const {username, text} = req.body;
+    const {username, tweet} = req.body;
     if(user.find((logged) => logged.username !== username)){
         res.send('UNAUTHORIZED');
         return;
@@ -34,10 +34,11 @@ application.post('/tweets', (req, res) =>{
     const single = {
         username: username,
         avatar: url,
-        tweet: text
+        tweet: tweet
     }
+    console.log(tweets);
     tweets.push(single);
-
+    console.log(tweets);
     res.status(200).send('OK')
 
 })
