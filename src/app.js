@@ -2,7 +2,7 @@ import cors from 'cors';
 import express from "express";
 
 const application = express();
-application.use(cors({origin: 'http://127.0.0.1:5501'}));
+application.use(cors());
 application.use(express.json());
 
 let user = [];
