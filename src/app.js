@@ -43,7 +43,8 @@ application.get('/tweets', (req, res) =>{
 
 application.post('/tweets', (req, res) =>{
     const {username, tweet} = req.body;
-    if(user.find((logged) => logged.username !== username)){
+    if(user.find((logged) => logged.username === username)){
+    } else {
         res.status(401).send('UNAUTHORIZED');
         return;
     }
