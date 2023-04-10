@@ -22,11 +22,21 @@ application.get('/tweets', (req, res) =>{
         if(tweets.length === 0){
             res.status(200).send([]);
         } else {
-            res.status(200).send({tweets});
+            const sent = tweets.map((tweet) => {
+                const person = user.find((single) => single.username === tweet.username);
+                const avatar = person ? person.avatar : null;
+                return { ...tweet, avatar, username: tweet.username, tweet: tweet.tweet };
+              });
+            res.status(200).send({sent});
         }
     } else{
         const last10 = tweets.slice(-10);
-        res.send(last10);
+        const sent = last10.map((tweet) => {
+            const person = user.find((single) => single.username === tweet.username);
+            const avatar = person ? person.avatar : null;
+            return { ...tweet, avatar, username: tweet.username, tweet: tweet.tweet };
+          });
+        res.send(sent);
     }
 
 })
@@ -37,7 +47,7 @@ application.post('/tweets', (req, res) =>{
         res.status(401).send('UNAUTHORIZED');
         return;
     }
-    const single = {
+    let single = {
         username: username,
         avatar: url,
         tweet: tweet
