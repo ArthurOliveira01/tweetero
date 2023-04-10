@@ -20,9 +20,9 @@ application.post('/sign-up', (req, res) =>{
 application.get('/tweets', (req, res) =>{
     if(tweets.length <= 10){
         if(tweets.length === 0){
-            res.send([]);
+            res.status(200).send([]);
         } else {
-            res.send({tweets});
+            res.status(200).send({tweets});
         }
     } else{
         const last10 = tweets.slice(-10);
