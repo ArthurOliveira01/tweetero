@@ -12,7 +12,6 @@ let url = '';
 application.post('/sign-up', (req, res) =>{
     const {username, avatar} = req.body;
     user.push({username, avatar});
-    console.log(user);
     url = avatar;
     res.status(200).send('OK');   
 })
@@ -53,13 +52,10 @@ application.post('/tweets', (req, res) =>{
         avatar: url,
         tweet: tweet
     }
-    console.log(tweets);
     tweets.push(single);
-    console.log(tweets);
     res.status(200).send('OK')
 
 })
 
 application.listen(5000, () => {
-    console.log('teste, porta 5000');
 })
